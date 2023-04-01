@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人空间</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">个人空间</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">首页</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">文章</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">相册</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">关于我</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" th:src="${user.headSculpture}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${user.username}"></h5>
+                    <p class="card-text" th:text="${user.nikeName}"></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">年龄： <span th:text="${user.age}"></span></li>
+<!--                    <li class="list-group-item">token： <span th:text="${user.token}"></span></li>-->
+<!--                    <li class="list-group-item">邮箱： <span th:text="${user.email}"></span></li>-->
+                </ul>
+                <!-- 聊天框 -->
+                <div class="card mt-3">
+                    <div class="card-header">Chat</div>
+                    <div class="card-body">
+                        <div class="chat-box">
+                            <div class="chat-msg">
+                                <div class="msg-content">Hello, how can I help you?</div>
+                                <div class="msg-time">12:30 PM</div>
+                            </div>
+                            <div class="chat-msg">
+                                <div class="msg-content">I have a question about your product.</div>
+                                <div class="msg-time">12:31 PM</div>
+                            </div>
+                            <!-- ...更多的聊天记录 -->
+                        </div>
+                        <form class="chat-form">
+                            <input type="text" class="form-control" placeholder="Type a message...">
+                            <button type="submit" class="btn btn-primary mt-2 float-right">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">最近文章</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a th:href="@{/post/1}">文章标题1</a></li>
+                    <li class="list-group-item"><a th:href="@{/post/2}">文章标题2</a></li>
+                    <li class="list-group-item"><a th:href="@{/post/3}">文章标题3</a></li>
+                </ul>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">最近相册</h5>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <a href="/img/photo1.jpg">
+                            <img src="/img/photo1.jpg" class="card-img" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/img/photo2.jpg">
+                            <img src="/img/photo2.jpg" class="card-img" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/img/photo3.jpg">
+                            <img src="/img/photo3.jpg" class="card-img" alt="...">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- 上传图片表单 -->
+            <form id="upload-form">
+                <div class="form-group mt-3">
+                    <label for="file-input">上传图片</label>
+                    <input type="file" class="form-control-file" id="file-input" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        // 监听上传图片表单提交事件
+        $('#upload-form').submit(function (event) {
+            event.preventDefault();
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                url: '/album/upload',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    console.log(result);
+                    // TODO: 显示上传成功的图片
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert('上传图片失败！');
+                }
+            });
+        });
+    });
+
+</script>
+</body>
+</html>

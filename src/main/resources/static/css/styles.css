@@ -1,0 +1,63 @@
+/* 设置网页背景为白色 */
+body {
+    background-color: #fff;
+}
+
+/* 设置标题的样式 */
+.title {
+    font-size: 36px;
+    color: rgb(70, 130, 180);
+    padding-top: 50px;
+}
+
+/* 设置表单的样式 */
+.form {
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 设置表单元素的样式 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.button {
+    background-color: rgb(51, 122, 183);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 10px;
+}
+
+body {
+    background-image: url("https://ymcc-wpr.oss-cn-chengdu.aliyuncs.com/u%3D1441022992%2C3594689583%26fm%3D253%26fmt%3Dauto%26app%3D120%26f%3DJPEG.avif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+form {
+    background-image: url('https://ymcc-wpr.oss-cn-chengdu.aliyuncs.com/3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
